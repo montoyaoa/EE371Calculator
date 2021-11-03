@@ -18,6 +18,9 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
 
    prop_constant = complex<double>((((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow((conductivity/angular_frequency*permitivity), 2)) - 1)) , (((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow((conductivity/angular_frequency*permitivity), 2)) + 1)));
 
+   complex<double> theta = (0, (1/2)*atan(conductivity/(angular_frequency*permitivity)));
+
+   char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow((conductivity/(angular_frequency*permitivity)) , 2)))))*exp(theta);
    //calculate the characteristic impedance at object creation
    //calculate propagation constant at object creation
 }
