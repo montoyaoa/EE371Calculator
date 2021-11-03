@@ -20,6 +20,6 @@ class Region {
       double time_avg_power_density;
 
    private:
-      double char_impedance;
+      std::complex<double> char_impedance;
       std::complex<double> prop_constant;
 };
