@@ -31,6 +31,7 @@ class Region {
 
    //used internally only
    private:
+      double cond_displace_ratio;
       double permitivity;
       double permeability;
       double angular_frequency;

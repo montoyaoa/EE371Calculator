@@ -15,14 +15,14 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
    angular_frequency = 2*PI*frequency;
    permitivity = dielectric_constant*PERMITIVITY_OF_FREE_SPACE;
    permeability = magnetic_permeability*PERMEABILITY_OF_FREE_SPACE;
+   cond_displace_ratio = (conductivity)/(angular_frequency*permitivity);
+   complex<double> theta = (0, (1/2)*atan(cond_displace_ratio));
 
-   prop_constant = complex<double>((((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow((conductivity/angular_frequency*permitivity), 2)) - 1)) , (((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow((conductivity/angular_frequency*permitivity), 2)) + 1)));
-
-   complex<double> theta = (0, (1/2)*atan(conductivity/(angular_frequency*permitivity)));
-
-   char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow((conductivity/(angular_frequency*permitivity)) , 2)))))*exp(theta);
-   //calculate the characteristic impedance at object creation
    //calculate propagation constant at object creation
+   prop_constant = complex<double>((((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow(cond_displace_ratio, 2)) - 1)) , (((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(1 + pow(cond_displace_ratio, 2)) + 1)));
+
+   //calculate the characteristic impedance at object creation
+   char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow(cond_displace_ratio , 2)))))*exp(theta);
 }
 
 void Region::displayProperties(){
