@@ -18,9 +18,11 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
    cond_displace_ratio = (conductivity)/(angular_frequency*permitivity);
    //theta is the angle between the electric and magnetic fields. we only need to use it here
    complex<double> theta = (0, (1/2)*atan(cond_displace_ratio));
+   double alpha = ((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(sqrt(1 + pow(cond_displace_ratio, 2)) - 1));
+   double beta = ((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(sqrt(1 + pow(cond_displace_ratio, 2)) + 1));
 
-   //calculate propagation constant at object creation
-   prop_constant = complex<double>((((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(sqrt(1 + pow(cond_displace_ratio, 2))) - 1)) , (((angular_frequency*sqrt(permitivity*permeability))/sqrt(2))*(sqrt(sqrt(1 + pow(cond_displace_ratio, 2))) + 1)));
+   //assemble propagation constant y = a+jb
+   prop_constant = complex<double>(alpha, beta);
 
    //calculate the characteristic impedance at object creation
    char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow(cond_displace_ratio , 2)))))*exp(theta);

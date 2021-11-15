@@ -11,7 +11,7 @@ class Region {
       Region(int, double, double, double, double, double);
       ~Region();
 
-      //inputs
+      //inputs: properties of the medium
       int id;
       double dielectric_constant;
       double magnetic_permeability;
