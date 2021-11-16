@@ -48,3 +48,9 @@ void Region::displayProperties(){
    cout << "---------------------------------------" << endl;
    cout << endl;
 }
+
+void Region::calculateReflectionCoeffecientAtOrigin(){
+   cout << "calculate" << endl;
+   reflectionCoeffecientAtOrigin = (totalImpedanceAtOrigin - char_impedance) / (totalImpedanceAtOrigin + char_impedance);
+}
+

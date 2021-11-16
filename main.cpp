@@ -68,7 +68,7 @@ int main() {
      
      if(currentRegion != regionList.rbegin()){
         (*currentRegion)->totalImpedanceAtOrigin = (*previousRegion)->totalImpedanceAtDepth;
-
+        (*currentRegion)->calculateReflectionCoeffecientAtOrigin();
      }
   }
 
