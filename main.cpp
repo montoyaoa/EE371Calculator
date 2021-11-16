@@ -62,10 +62,16 @@ int main() {
 
   regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
   regionList.back()->totalImpedanceAtDepth = regionList.back()->totalImpedanceAtOrigin;
+  
+  for(auto currentRegion = regionList.rbegin(); currentRegion != regionList.rend(); ++currentRegion){
+     auto previousRegion = prev(currentRegion, 1);
+     
+     if(currentRegion != regionList.rbegin()){
+        (*currentRegion)->totalImpedanceAtOrigin = (*previousRegion)->totalImpedanceAtDepth;
 
-  for(list<Region*>::reverse_iterator rit = regionList.rbegin(); rit != regionList.rend(); ++rit){
-     (*rit)->totalImpedanceAtOrigin = (*rit)->totalImpedanceAtDepth;
+     }
   }
+
    for(Region* region : regionList){
       region->displayProperties();
    }
