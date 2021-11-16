@@ -47,7 +47,7 @@ int main() {
       cin   >> newMagneticPermeability;
       cout  << "Enter Conductivity: ";
       cin   >> newConductivity;
-      cout  << "Enter Width: ";
+      cout  << "Enter Width (as a function of wavelength): ";
       cin   >> newWidth;
 
       Region * newRegion = new Region(i, newDielectricConstant, newMagneticPermeability, newConductivity, newWidth, newFrequency);

@@ -8,8 +8,10 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
    dielectric_constant = newDielectricConstant;
    magnetic_permeability = newMagneticPermeability;
    conductivity = newConductivity;
-   width = newWidth;
+   //width = newWidth;
    frequency = newFrequency;
+
+   width = (newWidth) * (SPEED_OF_LIGHT/(frequency * sqrt(dielectric_constant)));
 
    //define the internal values that we'll need later
    angular_frequency = 2*PI*frequency;
@@ -50,7 +52,6 @@ void Region::displayProperties(){
 }
 
 void Region::calculateReflectionCoeffecientAtOrigin(){
-   cout << "calculate" << endl;
    reflectionCoeffecientAtOrigin = (totalImpedanceAtOrigin - char_impedance) / (totalImpedanceAtOrigin + char_impedance);
 }
 
@@ -62,7 +63,6 @@ void Region::calculateReflectionCoeffecientAtDepth(){
 }
 
 void Region::calculateTotalImpedanceAtDepth(){
-  
    complex<double> complexOne(1, 0);
 
    totalImpedanceAtDepth = (char_impedance) * ((complexOne + reflectionCoeffecientAtOrigin)/(complexOne - reflectionCoeffecientAtOrigin));
