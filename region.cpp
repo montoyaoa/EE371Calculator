@@ -27,7 +27,8 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
    prop_constant = complex<double>(alpha, beta);
 
    //calculate the characteristic impedance at object creation
-   char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow(cond_displace_ratio , 2)))))*exp(theta);
+   //char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow(cond_displace_ratio , 2)))))*exp(theta);
+   char_impedance = sqrt(permeability / (permitivity - complex<double>(0, (conductivity / angular_frequency))));
 }
 
 void Region::displayProperties(){
