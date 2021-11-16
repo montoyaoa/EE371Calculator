@@ -60,6 +60,15 @@ int main() {
       region->displayProperties();
    }
 
+  regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
+  regionList.back()->totalImpedanceAtDepth = regionList.back()->totalImpedanceAtOrigin;
+
+  for(list<Region*>::reverse_iterator rit = regionList.rbegin(); rit != regionList.rend(); ++rit){
+     (*rit)->totalImpedanceAtOrigin = (*rit)->totalImpedanceAtDepth;
+  }
+   for(Region* region : regionList){
+      region->displayProperties();
+   }
    //prompt the user for input
 
 //assign input data to variables inside new objects (use a factory)

@@ -30,18 +30,21 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
 
 void Region::displayProperties(){
    cout << "Region " << id << " properties " << endl;
+   cout << "---------------------------------------" << endl;
    cout << "dielectric constant: " << dielectric_constant << endl;
    cout << "magnetic permeability: " << magnetic_permeability << endl;
    cout << "conductivity: " << conductivity << endl;
    cout << "width: " << width << endl;
-   cout << endl;
-   cout << "electric field properties" << endl;
-   cout << "frequency: " << frequency << endl;
    cout << endl;
    cout << "angular frequency: " << angular_frequency << endl;
    cout << "permitvity: " << permitivity << endl;
    cout << "permeability: " << permeability << endl;
    cout << "characteristic impedance: " << char_impedance << endl;
    cout << "propagation constant: " << prop_constant << endl;
-
+   cout << "total impedance at origin: " << totalImpedanceAtOrigin << endl;
+   cout << "total impedance at depth: " << totalImpedanceAtDepth << endl;
+   cout << "reflection coeffecient at origin: " << reflectionCoeffecientAtOrigin << endl;
+   cout << "reflection coeffecient at depth: " << reflectionCoeffecientAtDepth << endl;
+   cout << "---------------------------------------" << endl;
+   cout << endl;
 }

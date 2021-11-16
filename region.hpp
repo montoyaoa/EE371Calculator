@@ -30,11 +30,16 @@ class Region {
       void displayProperties();
 
    //used internally only
-   private:
       double cond_displace_ratio;
       double permitivity;
       double permeability;
       double angular_frequency;
       std::complex<double> char_impedance;
       std::complex<double> prop_constant;
+
+      std::complex<double> totalImpedanceAtOrigin;
+      std::complex<double> totalImpedanceAtDepth;
+      
+      std::complex<double> reflectionCoeffecientAtOrigin;
+      std::complex<double> reflectionCoeffecientAtDepth;
 };
