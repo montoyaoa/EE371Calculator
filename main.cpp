@@ -70,6 +70,7 @@ int main() {
         (*currentRegion)->totalImpedanceAtOrigin = (*previousRegion)->totalImpedanceAtDepth;
         (*currentRegion)->calculateReflectionCoeffecientAtOrigin();
         (*currentRegion)->calculateReflectionCoeffecientAtDepth();
+        (*currentRegion)->calculateTotalImpedanceAtDepth();
      }
   }
 

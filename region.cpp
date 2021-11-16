@@ -61,3 +61,11 @@ void Region::calculateReflectionCoeffecientAtDepth(){
    reflectionCoeffecientAtDepth = (reflectionCoeffecientAtOrigin) * (exp(prop_constant * complexExpFactor * complexWidth));
 }
 
+void Region::calculateTotalImpedanceAtDepth(){
+  
+   complex<double> complexOne(1, 0);
+
+   totalImpedanceAtDepth = (char_impedance) * ((complexOne + reflectionCoeffecientAtOrigin)/(complexOne - reflectionCoeffecientAtOrigin));
+
+}
+

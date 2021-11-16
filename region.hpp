@@ -30,6 +30,7 @@ class Region {
       void displayProperties();
       void calculateReflectionCoeffecientAtOrigin();
       void calculateReflectionCoeffecientAtDepth();
+      void calculateTotalImpedanceAtDepth();
 
    //used internally only
       double cond_displace_ratio;
