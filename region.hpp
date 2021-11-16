@@ -29,6 +29,7 @@ class Region {
       //methods
       void displayProperties();
       void calculateReflectionCoeffecientAtOrigin();
+      void calculateReflectionCoeffecientAtDepth();
 
    //used internally only
       double cond_displace_ratio;
