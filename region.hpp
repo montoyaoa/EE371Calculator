@@ -46,4 +46,8 @@ class Region {
       
       std::complex<double> reflectionCoeffecientAtOrigin;
       std::complex<double> reflectionCoeffecientAtDepth;
+
+      std::complex<double> electricFieldTransmitted;
+      std::complex<double> electricFieldReflected;
+
 };

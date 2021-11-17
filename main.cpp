@@ -55,6 +55,7 @@ int main() {
       cout  << endl;
    }
 
+   regionList.front()->electricFieldTransmitted = complex<double>(newEFieldAmplitude, 0);
   regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
   regionList.back()->totalImpedanceAtDepth = regionList.back()->totalImpedanceAtOrigin;
   
@@ -72,6 +73,8 @@ int main() {
    for(Region* region : regionList){
       region->displayProperties();
    }
+
+
    //prompt the user for input
 
 //assign input data to variables inside new objects (use a factory)

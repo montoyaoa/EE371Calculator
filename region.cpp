@@ -48,6 +48,9 @@ void Region::displayProperties(){
    cout << "total impedance at depth: " << totalImpedanceAtDepth << endl;
    cout << "reflection coeffecient at origin: " << reflectionCoeffecientAtOrigin << endl;
    cout << "reflection coeffecient at depth: " << reflectionCoeffecientAtDepth << endl;
+   cout << endl;
+   cout << "Transmitted electric field: " << electricFieldTransmitted << endl;
+   cout << "Reflected electric field: " << electricFieldReflected << endl;
    cout << "---------------------------------------" << endl;
    cout << endl;
 }
