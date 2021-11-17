@@ -55,11 +55,6 @@ int main() {
       cout  << endl;
    }
 
-
-   for(Region* region : regionList){
-      region->displayProperties();
-   }
-
   regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
   regionList.back()->totalImpedanceAtDepth = regionList.back()->totalImpedanceAtOrigin;
   

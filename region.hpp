@@ -2,7 +2,7 @@
 #include <complex> 
 #include <iostream>
 
-#define PI 3.14159 
+#define PI 3.141592654 
 #define PERMEABILITY_OF_FREE_SPACE (PI * 4E-7)
 #define PERMITIVITY_OF_FREE_SPACE  8.854E-12
 #define SPEED_OF_LIGHT 3E8
