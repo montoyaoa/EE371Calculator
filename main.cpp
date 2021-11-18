@@ -55,7 +55,8 @@ int main() {
       cout  << endl;
    }
 
-   regionList.front()->electricFieldTransmitted = complex<double>(newEFieldAmplitude, 0);
+
+
   regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
   regionList.back()->totalImpedanceAtDepth = regionList.back()->totalImpedanceAtOrigin;
   
@@ -67,6 +68,21 @@ int main() {
         (*currentRegion)->calculateReflectionCoeffecientAtOrigin();
         (*currentRegion)->calculateReflectionCoeffecientAtDepth();
         (*currentRegion)->calculateTotalImpedanceAtDepth();
+     }
+  }
+
+   regionList.front()->transmittedElectricField = complex<double>(newEFieldAmplitude, 0);
+   regionList.front()->reflectedElectricField = regionList.front()->transmittedElectricField * regionList.front()->reflectionCoeffecientAtOrigin;
+   regionList.front()->totalElectricFieldAtOrigin = regionList.front()->transmittedElectricField * (complex<double>(1, 0) + regionList.front()->reflectionCoeffecientAtOrigin);
+
+  for(auto currentRegion = regionList.begin(); currentRegion != regionList.end(); ++currentRegion){
+     auto previousRegion = prev(currentRegion, 1);
+
+     if(currentRegion != regionList.begin()){
+        (*currentRegion)->totalElectricFieldAtDepth = (*previousRegion)->totalElectricFieldAtOrigin;
+        (*currentRegion)->calculateTransmittedElectricField((*previousRegion)->totalElectricFieldAtOrigin, (*previousRegion)->reflectionCoeffecientAtOrigin);
+        (*currentRegion)->calculateReflectedElectricField();
+        (*currentRegion)->calculateTotalElectricFieldAtOrigin();
      }
   }
 

@@ -49,8 +49,12 @@ void Region::displayProperties(){
    cout << "reflection coeffecient at origin: " << reflectionCoeffecientAtOrigin << endl;
    cout << "reflection coeffecient at depth: " << reflectionCoeffecientAtDepth << endl;
    cout << endl;
-   cout << "Transmitted electric field: " << electricFieldTransmitted << endl;
-   cout << "Reflected electric field: " << electricFieldReflected << endl;
+   cout << "Transmitted electric field: " << transmittedElectricField << endl;
+   cout << "Reflected electric field: " << reflectedElectricField << endl;
+   cout << "total electric field at origin: " << totalElectricFieldAtOrigin << endl;
+   cout << "total electric field at depth: " << totalElectricFieldAtDepth << endl;
+   cout << endl;
+   cout << "time average power density: " << time_avg_power_density << endl;
    cout << "---------------------------------------" << endl;
    cout << endl;
 }
@@ -73,3 +77,26 @@ void Region::calculateTotalImpedanceAtDepth(){
 
 }
 
+void Region::calculateTransmittedElectricField(complex<double> previousTotalElectricField, complex<double> previousReflectionCoeffecientAtOrigin){
+   complex<double> complexOne(1, 0);
+
+   transmittedElectricField = (previousTotalElectricField * (complexOne + previousReflectionCoeffecientAtOrigin)) / (exp(prop_constant * width) * (complexOne + reflectionCoeffecientAtDepth));
+}
+
+void Region::calculateReflectedElectricField(){
+   reflectedElectricField = transmittedElectricField * reflectionCoeffecientAtOrigin;
+}
+
+void Region::calculateTotalElectricFieldAtOrigin(){
+   complex<double> complexOne(1, 0);
+   
+   totalElectricFieldAtOrigin = transmittedElectricField * (complexOne + reflectionCoeffecientAtOrigin);
+}
+
+void Region::calculateTimeAveragePowerDensity(){
+
+   complex<double> numerator = norm(transmittedElectricField) * (1 - norm(reflectionCoeffecientAtOrigin));
+   complex<double> denominator = complex<double>(2, 0) * char_impedance;
+   time_avg_power_density = numerator / denominator;
+
+}

@@ -25,19 +25,24 @@ class Region {
       double reflection_coeffecient;
       double e_field_pos_amplitude;
       double e_field_neg_amplitude;
-      double time_avg_power_density;
+      std::complex<double> time_avg_power_density;
 
       //methods
       void displayProperties();
       void calculateReflectionCoeffecientAtOrigin();
       void calculateReflectionCoeffecientAtDepth();
       void calculateTotalImpedanceAtDepth();
+      void calculateTransmittedElectricField(std::complex<double>, std::complex<double>);
+      void calculateReflectedElectricField();
+      void calculateTotalElectricFieldAtOrigin();
+      void calculateTimeAveragePowerDensity();
 
    //used internally only
       double cond_displace_ratio;
       double permitivity;
       double permeability;
       double angular_frequency;
+
       std::complex<double> char_impedance;
       std::complex<double> prop_constant;
 
@@ -47,7 +52,10 @@ class Region {
       std::complex<double> reflectionCoeffecientAtOrigin;
       std::complex<double> reflectionCoeffecientAtDepth;
 
-      std::complex<double> electricFieldTransmitted;
-      std::complex<double> electricFieldReflected;
+      std::complex<double> transmittedElectricField;
+      std::complex<double> reflectedElectricField;
+
+      std::complex<double> totalElectricFieldAtOrigin;
+      std::complex<double> totalElectricFieldAtDepth;
 
 };
