@@ -96,6 +96,9 @@ int main() {
       region->displayProperties();
    }
 
+   for(Region* region : regionList){
+      region->displayResults();
+   }
 
    //prompt the user for input
 

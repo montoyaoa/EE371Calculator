@@ -59,6 +59,16 @@ void Region::displayProperties(){
    cout << endl;
 }
 
+void Region::displayResults(){
+   cout << "For Region " << id << endl;
+   cout << "---------------------------------------" << endl;
+   cout << "Transmitted Electric Field: " << transmittedElectricField << endl;
+   cout << "Reflected Electric Field: " << reflectedElectricField << endl;
+   cout << "Time Average Power Density: " << time_avg_power_density << endl;
+   cout << "---------------------------------------" << endl;
+   cout << endl;
+}
+
 void Region::calculateReflectionCoeffecientAtOrigin(){
    reflectionCoeffecientAtOrigin = (totalImpedanceAtOrigin - char_impedance) / (totalImpedanceAtOrigin + char_impedance);
 }

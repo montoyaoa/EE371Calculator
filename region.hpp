@@ -29,6 +29,7 @@ class Region {
 
       //methods
       void displayProperties();
+      void displayResults();
       void calculateReflectionCoeffecientAtOrigin();
       void calculateReflectionCoeffecientAtDepth();
       void calculateTotalImpedanceAtDepth();
