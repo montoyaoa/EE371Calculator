@@ -6,11 +6,8 @@
 using namespace std;
 
 int main() {
-  // Region* testRegion = new Region(1, 2.0, 3.0, 4.0, 5.0, 6.0);
-   //testRegion->displayProperties();
-
-
    list<Region*> regionList;
+   list<Region*> regionListAdjusted;
 
    int numberOfRegions = 0;
 
@@ -52,9 +49,16 @@ int main() {
 
       Region * newRegion = new Region(i, newDielectricConstant, newMagneticPermeability, newConductivity, newWidth, newFrequency);
       regionList.push_back(newRegion);
+
+      if(i == 1 || i == 2){
+         regionListAdjusted.push_back(newRegion);
+      }
+
       cout  << endl;
    }
 
+   regionList.front()->width = 0;
+   regionList.back()->width = 0;
 
 
   regionList.back()->totalImpedanceAtOrigin = regionList.back()->char_impedance;
@@ -74,6 +78,7 @@ int main() {
    regionList.front()->transmittedElectricField = complex<double>(newEFieldAmplitude, 0);
    regionList.front()->reflectedElectricField = regionList.front()->transmittedElectricField * regionList.front()->reflectionCoeffecientAtOrigin;
    regionList.front()->totalElectricFieldAtOrigin = regionList.front()->transmittedElectricField * (complex<double>(1, 0) + regionList.front()->reflectionCoeffecientAtOrigin);
+   regionList.front()->calculateTimeAveragePowerDensity();
 
   for(auto currentRegion = regionList.begin(); currentRegion != regionList.end(); ++currentRegion){
      auto previousRegion = prev(currentRegion, 1);
@@ -83,6 +88,7 @@ int main() {
         (*currentRegion)->calculateTransmittedElectricField((*previousRegion)->totalElectricFieldAtOrigin, (*previousRegion)->reflectionCoeffecientAtOrigin);
         (*currentRegion)->calculateReflectedElectricField();
         (*currentRegion)->calculateTotalElectricFieldAtOrigin();
+        (*currentRegion)->calculateTimeAveragePowerDensity();
      }
   }
 

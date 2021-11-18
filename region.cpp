@@ -97,6 +97,7 @@ void Region::calculateTimeAveragePowerDensity(){
 
    complex<double> numerator = norm(transmittedElectricField) * (1 - norm(reflectionCoeffecientAtOrigin));
    complex<double> denominator = complex<double>(2, 0) * char_impedance;
+   
    time_avg_power_density = numerator / denominator;
 
 }
