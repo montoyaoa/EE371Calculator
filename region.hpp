@@ -37,6 +37,7 @@ class Region {
       void calculateReflectedElectricField();
       void calculateTotalElectricFieldAtOrigin();
       void calculateTimeAveragePowerDensity();
+      void rectangularToPolar(std::complex<double>);
 
    //used internally only
       double cond_displace_ratio;

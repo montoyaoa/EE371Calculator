@@ -85,7 +85,7 @@ int main() {
 
      if(currentRegion != regionList.begin()){
         (*currentRegion)->totalElectricFieldAtDepth = (*previousRegion)->totalElectricFieldAtOrigin;
-        (*currentRegion)->calculateTransmittedElectricField((*previousRegion)->totalElectricFieldAtOrigin, (*previousRegion)->reflectionCoeffecientAtOrigin);
+        (*currentRegion)->calculateTransmittedElectricField((*previousRegion)->transmittedElectricField, (*previousRegion)->reflectionCoeffecientAtOrigin);
         (*currentRegion)->calculateReflectedElectricField();
         (*currentRegion)->calculateTotalElectricFieldAtOrigin();
         (*currentRegion)->calculateTimeAveragePowerDensity();

@@ -62,9 +62,15 @@ void Region::displayProperties(){
 void Region::displayResults(){
    cout << "For Region " << id << endl;
    cout << "---------------------------------------" << endl;
-   cout << "Transmitted Electric Field: " << transmittedElectricField << endl;
-   cout << "Reflected Electric Field: " << reflectedElectricField << endl;
-   cout << "Time Average Power Density: " << time_avg_power_density << endl;
+   cout << "Transmitted Electric Field: "; 
+   rectangularToPolar(transmittedElectricField);
+   cout << " V/m" << endl;
+   cout << "Reflected Electric Field: ";
+   rectangularToPolar(reflectedElectricField); 
+   cout << " V/m " << endl;
+   cout << "Time Average Power Density: ";
+   rectangularToPolar(time_avg_power_density);
+   cout << " W/m^2" <<endl;
    cout << "---------------------------------------" << endl;
    cout << endl;
 }
@@ -78,6 +84,9 @@ void Region::calculateReflectionCoeffecientAtDepth(){
    complex<double> complexExpFactor(-2, 0);
 
    reflectionCoeffecientAtDepth = (reflectionCoeffecientAtOrigin) * (exp(prop_constant * complexExpFactor * complexWidth));
+   
+   cout << "exponent form: " << (exp(prop_constant * complexExpFactor * complexWidth)) << endl;
+
 }
 
 void Region::calculateTotalImpedanceAtDepth(){
@@ -87,10 +96,10 @@ void Region::calculateTotalImpedanceAtDepth(){
 
 }
 
-void Region::calculateTransmittedElectricField(complex<double> previousTotalElectricField, complex<double> previousReflectionCoeffecientAtOrigin){
+void Region::calculateTransmittedElectricField(complex<double> previousTransmittedElectricField, complex<double> previousReflectionCoeffecientAtOrigin){
    complex<double> complexOne(1, 0);
 
-   transmittedElectricField = (previousTotalElectricField * (complexOne + previousReflectionCoeffecientAtOrigin)) / (exp(prop_constant * width) * (complexOne + reflectionCoeffecientAtDepth));
+   transmittedElectricField = (previousTransmittedElectricField * (complexOne + previousReflectionCoeffecientAtOrigin)) / (exp(prop_constant * width) * (complexOne + reflectionCoeffecientAtDepth));
 }
 
 void Region::calculateReflectedElectricField(){
@@ -110,4 +119,38 @@ void Region::calculateTimeAveragePowerDensity(){
    
    time_avg_power_density = numerator / denominator;
 
+}
+
+void Region::rectangularToPolar(complex<double> input){
+double radius = sqrt(pow(input.real(), 2) + pow(input.imag(), 2));
+double angle = 0;
+
+if(input.real() == 0 && input.imag() > 0){
+   angle = PI/2;
+}
+else if(input.real() == 0 && input.imag() < 0){
+   angle = -1 * PI / 2;
+}
+else if(input.real() > 0 && input.imag() == 0){
+   angle = 0;
+}
+else if(input.real() < 0 && input.imag() == 0){
+   angle = PI;
+}
+else if(input.real() > 0){
+   angle = atan(input.imag() / input.real());
+}
+else if(input.real() < 0){
+   angle = atan(input.imag() / input.real()) + PI;
+}
+
+angle = (angle * 180) / PI;
+
+if(angle > 180){
+   angle = angle - 360;
+}
+else if(angle < -180){
+   angle = angle + 180;
+}
+cout << radius << "e^i" << angle << " degrees";
 }
