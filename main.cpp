@@ -51,7 +51,8 @@ int main() {
       regionList.push_back(newRegion);
 
       if(i == 1 || i == 2){
-         regionListAdjusted.push_back(newRegion);
+         Region * newAdjustedRegion = new Region(i, newDielectricConstant, newMagneticPermeability, newConductivity, newWidth, newFrequency);
+         regionListAdjusted.push_back(newAdjustedRegion);
       }
 
       cout  << endl;

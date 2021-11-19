@@ -118,7 +118,7 @@ void Region::calculateTimeAveragePowerDensity(){
 }
 
 void Region::rectangularToPolar(complex<double> input){
-double radius = sqrt(pow(input.real(), 2) + pow(input.imag(), 2));
+double magnitude = sqrt(pow(input.real(), 2) + pow(input.imag(), 2));
 double angle = 0;
 
 if(input.real() == 0 && input.imag() > 0){
@@ -148,10 +148,10 @@ if(angle > 180){
 //euler's formula
 else if(angle == 180){
    angle = 0;
-   radius = radius * -1;
+   magnitude = magnitude * -1;
 }
 else if(angle < -180){
    angle = angle + 180;
 }
-cout << radius << "e^i" << angle << " degrees";
+cout << magnitude << "e^j" << angle << " degrees";
 }
