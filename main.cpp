@@ -92,14 +92,30 @@ int main() {
      }
   }
 
+  regionListAdjusted.back()->totalImpedanceAtOrigin = regionListAdjusted.back()->char_impedance;
+  regionListAdjusted.back()->totalImpedanceAtDepth = regionListAdjusted.back()->totalImpedanceAtOrigin;
+
+  regionListAdjusted.front()->totalImpedanceAtOrigin = regionListAdjusted.back()->totalImpedanceAtDepth;
+  regionListAdjusted.front()->calculateReflectionCoeffecientAtOrigin();
+
+/*
    for(Region* region : regionList){
       region->displayProperties();
    }
-
+*/
    for(Region* region : regionList){
       region->displayResults();
    }
 
+   cout << "Region 1 Reflection Coeffecient: ";
+   regionList.front()->rectangularToPolar(regionList.front()->reflectionCoeffecientAtOrigin);
+   cout << endl;
+   cout << "Region 1 Reflection Coeffecient, assuming only Regions 1 and 2: ";
+   regionListAdjusted.front()->rectangularToPolar(regionListAdjusted.front()->reflectionCoeffecientAtOrigin);
+   cout << endl;
+   cout << "Difference: ";
+   regionList.front()->rectangularToPolar(regionList.front()->reflectionCoeffecientAtOrigin - regionListAdjusted.front()->reflectionCoeffecientAtOrigin);
+   cout << endl;
    //prompt the user for input
 
 //assign input data to variables inside new objects (use a factory)

@@ -27,7 +27,6 @@ Region::Region(int newId, double newDielectricConstant, double newMagneticPermea
    prop_constant = complex<double>(alpha, beta);
 
    //calculate the characteristic impedance at object creation
-   //char_impedance = ((sqrt(permeability/permitivity))/(sqrt(sqrt(1 + pow(cond_displace_ratio , 2)))))*exp(theta);
    char_impedance = sqrt(permeability / (permitivity - complex<double>(0, (conductivity / angular_frequency))));
 }
 
@@ -84,9 +83,6 @@ void Region::calculateReflectionCoeffecientAtDepth(){
    complex<double> complexExpFactor(-2, 0);
 
    reflectionCoeffecientAtDepth = (reflectionCoeffecientAtOrigin) * (exp(prop_constant * complexExpFactor * complexWidth));
-   
-   cout << "exponent form: " << (exp(prop_constant * complexExpFactor * complexWidth)) << endl;
-
 }
 
 void Region::calculateTotalImpedanceAtDepth(){
@@ -148,6 +144,11 @@ angle = (angle * 180) / PI;
 
 if(angle > 180){
    angle = angle - 360;
+}
+//euler's formula
+else if(angle == 180){
+   angle = 0;
+   radius = radius * -1;
 }
 else if(angle < -180){
    angle = angle + 180;
